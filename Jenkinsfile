@@ -51,7 +51,7 @@ pipeline
             		passwordVariable: 'DOCKER_PASS'
         			)]) {
 						sh """
-						echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+						echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
          		   		docker push <your-username>/simple-maven-app:${BUILD_NUMBER}
             			"""
         				}
