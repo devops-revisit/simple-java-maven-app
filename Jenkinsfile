@@ -40,8 +40,21 @@ pipeline
 		}
 		stage('Docker Build image') {
 			steps {
-				sh 'docker build -t $IMAGE_NAME:$BUILD_NUMBER .'
+				sh 'docker build -t mnidevops/$IMAGE_NAME:$BUILD_NUMBER .'
 			}
 		}
-	}
+		stage('Docker Push Image') {
+			steps {
+					withCredentials([usernamePassword(
+            		credentialsId: 'docker-creds',
+            		usernameVariable: 'DOCKER_USER',
+            		passwordVariable: 'DOCKER_PASS'
+        			)]) {
+						sh '''
+						echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+         		   		docker push <your-username>/simple-maven-app:${BUILD_NUMBER}
+            			'''
+        				}
+					}
+		}
 }
