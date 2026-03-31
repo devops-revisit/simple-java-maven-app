@@ -17,7 +17,7 @@
   </dependencies>
   <properties>
 	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	  <sonar.host.url>http://13.203.213.149:9000/</sonar.host.url>
+	  <sonar.host.url>http://65.0.99.113:9000/</sonar.host.url>
   </properties>
   <build>
     <pluginManagement>
