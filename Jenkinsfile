@@ -40,7 +40,7 @@ pipeline
 		}
 		stage('Docker Build image') {
 			steps {
-				sh 'docker build -t $IMAGE_NAME:$BUILD_NAME .'
+				sh 'docker build -t $IMAGE_NAME:$BUILD_NUMBER .'
 			}
 		}
 	}
