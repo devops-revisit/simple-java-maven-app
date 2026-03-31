@@ -52,7 +52,7 @@ pipeline
         			)]) {
 						sh '''
 						echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin
-         		   		docker push <your-username>/simple-maven-app:${BUILD_NUMBER}
+         		   		docker push mnidevops/simple-maven-app:${BUILD_NUMBER}
             			'''
         				}
 					}
