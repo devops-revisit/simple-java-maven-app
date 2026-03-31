@@ -55,7 +55,30 @@ pipeline
          		   		docker push mnidevops/simple-maven-app:${BUILD_NUMBER}
             			'''
         				}
-					}
+				}
+		}
+		stage('Pull Image') {
+			steps {
+				sh 'docker pull mnidevops/simple-maven-app:${BUILD_NUMBER}'
+			}
+		}
+		stage('Stop Old Container') {
+			steps {
+				sh '''
+				docker stop ${CONTAINER_NAME} || true
+				docker rm ${CONTAINER_NAME} | true
+				'''
+			}
+		}
+		stage('Run Container') {
+			steps {
+				sh '''
+				docker run -d -p 8081:9090 \
+				--name ${CONTAINER_NAME} \
+				mnidevops/simple-maven-app:${BUILD_NUMBER} \
+				docker ps
+				'''
+			}
 		}
 	}
 }
